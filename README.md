@@ -38,7 +38,7 @@ line breaks which will give you problems!!
 
 	1) Blinking text in rainbow mode.
 	
-	$ netyell "What is the speed air-speed velocity of an unladen swallow?" -b -r
+	$ netyell 'What is the speed air-speed velocity of an unladen swallow?' -b -r
 	
 	2) The serial of the sign in monospace 11px, red, with surrounding wingbats. 
 	
