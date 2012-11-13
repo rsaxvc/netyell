@@ -6,6 +6,7 @@ import sys
 import requests
 from time import sleep
 import random
+from terminal import render
 
 baseurl = "http://finder.ath.cx/cgi-bin/sign/sign.pl?textcontent="
 fonts = [
@@ -82,10 +83,12 @@ if __name__ == "__main__":
         print "Please input a message argument surrounded by quotes. Exception: %s" % e 
 
     if "--help" in text:
-        help_text = """NAME:
+        help_text = render("""NAME:
     netyell - send formatted messages to symon netbrite signs
 SYNOPSIS:
-    netyell "web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}"
+%(BOLD)sWARNING:%(NORMAL)sDon\'t use double quotes to encapsulate the string argument, single quotes are 
+fine though.
+    netyell 'web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}'
     [-b -d -e -f -l -r -s -v]
     netyell "{NETBRITE-SHORT-CODE-STRING}" [-b -d -e -f -l -r -s -v]
     netyell --help
@@ -100,15 +103,17 @@ FLAGS:
         default (netbrite-shortcode string).
     -l[secs]\tLoops the message, sending a recurring request every 5 seconds.
     Or at whatever interval you specify.
-    -r\tPuts text in rainbow mode. WARNING: This greatly increases the size
+    -r\tPuts text in rainbow mode. %(BOLD)sWARNING:%(BOLD)s This greatly increases the size
         of the message which may cause the server to ignore it even though it
         sends back a 200 status code.
     -s\tSurrounds your message in wingbat symbols.
     -v\tReturns verbose request output.
 EXAMPLES:
+%(BOLD)sWARNING:%(NORMAL)s Don't copy and paste examples from the manual or %(UNDERLINE)s--help,%(NORMAL)s they have
+hard line breaks which will give you problems!!
    1) Blinking text in rainbow mode.
    
-   $ netyell "What is the speed air-speed velocity of an unladen swallow?" -b -r
+   $ netyell 'What is the speed air-speed velocity of an unladen swallow?' -b -r
    
    2) The serial of the sign in monospace 11px, red, with surrounding wingbats. 
    
@@ -130,7 +135,7 @@ EXAMPLES:
                 
 NETBRITE SHORT CODES:
     Netyell does not require you to use the full length netbrite tags. You can
-    use these shortcuts:"""
+    use these shortcuts:""")
         print help_text
         for sub in subs:
             print "\t" + sub + ": "  + subs[sub]
