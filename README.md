@@ -11,6 +11,7 @@ This requires that you have `pip` and `wget` installed on your system.
 ###SYNOPSIS:
 *WARNING: Don't use double quotes to encapsulate the string argument. Single quotes are
 fine.*
+
     netyell 'web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}'
     [-b -d -e -f -l -r -s -v]
     netyell '{NETBRITE-SHORT-CODE-STRING}' [-b -d -e -f -l -r -s -v]
