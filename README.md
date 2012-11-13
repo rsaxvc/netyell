@@ -3,7 +3,7 @@
 
 ###INSTALL
 	
-Clone this repository or download it's contents. Run:
+Clone this repository or download its contents. Run:
 
 	chmod +x install.sh && ./install.sh
 
