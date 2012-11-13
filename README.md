@@ -1,7 +1,7 @@
 ###NAME:
     netyell - send formatted messages to symon netbrite signs
 
-###INSTALL
+###INSTALL:
 	
 Clone this repository or download its contents. Run:
 
