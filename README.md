@@ -74,6 +74,7 @@ This requires that you have `pip` and `wget` installed on your system.
 		::e: {erase}
 		:: : }
 ###AVAILABLE FONTS
+
     The fonts available on the sing and their short codes are listed below:
         &&mo24: monospace_24
         &&sc16: script_16
