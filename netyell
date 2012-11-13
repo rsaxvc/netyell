@@ -6,7 +6,7 @@ import sys
 import requests
 from time import sleep
 import random
-from terminal import render
+from terminal import TerminalController; TC = TerminalController(); render = TC.render
 
 baseurl = "http://finder.ath.cx/cgi-bin/sign/sign.pl?textcontent="
 fonts = [
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         help_text = render("""NAME:
     netyell - send formatted messages to symon netbrite signs
 SYNOPSIS:
-%(BOLD)sWARNING:%(NORMAL)sDon\'t use double quotes to encapsulate the string argument, single quotes are 
+${BOLD}WARNING:${NORMAL}Don\'t use double quotes to encapsulate the string argument, single quotes are 
 fine though.
     netyell 'web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}'
     [-b -d -e -f -l -r -s -v]
@@ -109,7 +109,7 @@ FLAGS:
     -s\tSurrounds your message in wingbat symbols.
     -v\tReturns verbose request output.
 EXAMPLES:
-%(BOLD)sWARNING:%(NORMAL)s Don't copy and paste examples from the manual or %(UNDERLINE)s--help,%(NORMAL)s they have
+${BOLD}WARNING:${NORMAL} Don't copy and paste examples from the manual or ${UNDERLINE}--help,${NORMAL} they have
 hard line breaks which will give you problems!!
    1) Blinking text in rainbow mode.
    
