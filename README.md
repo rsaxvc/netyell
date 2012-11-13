@@ -9,8 +9,8 @@ Clone this repository or download its contents. Run:
 
 This requires that you have `pip` and `wget` installed on your system.
 ###SYNOPSIS:
-*WARNING: Don't use double quotes to encapsulate the string argument. Single quotes are
-fine.*
+*WARNING:* Don't use double quotes to encapsulate the string argument. Single quotes are
+fine.
 
     netyell 'web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}'
     [-b -d -e -f -l -r -s -v]
@@ -33,8 +33,8 @@ fine.*
     -s		Surrounds your message in wingbat symbols.
     -v		Returns verbose request output.
 ###EXAMPLES:
-*WARNING: Don't copy and paste examples from the manual or `-help`, they have hard
-line breaks which will give you problems!!*
+*WARNING:* Don't copy and paste examples from the manual or `-help`, they have hard
+line breaks which will give you problems!!
 
 	1) Blinking text in rainbow mode.
 	
