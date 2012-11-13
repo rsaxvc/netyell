@@ -1,0 +1,199 @@
+#!/usr/bin/env python
+
+from BeautifulSoup import BeautifulSoup as Soup
+import soupselect; soupselect.monkeypatch()
+import urllib
+import sys
+import requests
+from time import sleep
+import random
+
+baseurl = "http://finder.ath.cx/cgi-bin/sign/sign.pl?textcontent="
+fonts = [
+    "monospace_7",
+    "monospace_16",
+    "monospace_24",
+    "proportional_24",
+    "proportional_7",
+    "proportional_5",
+    "proportional_9",
+    "proportional_11",
+    "proportional_16",
+    "bold_proportional_7",
+    "bold_proportional_11",
+    "script_16",
+    "picture_16"
+]
+
+subs = {
+    "::son": "{scrollon}",
+    "::sof": "{scrolloff}",
+    "::bon": "{blinkon}",
+    "::boff": "{blinkoff}",
+    "!!r": "{red}",
+    "!!g": "{green}",
+    "!!y": "{yellow}",
+    "&&l": "{left}",
+    "&&c": "{center}",
+    "&&r": "{right}",
+    "&&f ->": "{font",
+    "::p": "{pause}",
+    "::e": "{erase}",
+    "^^s": "{serial}",
+    "::b": "{bell}",
+    "::t ->": "{tune ",
+    ":: ": "}",
+}
+
+font_codes = dict(zip(['&&'+ font.split("_")[0][0:2] +
+    font.split("_")[len(font.split("_")) - 1] for font in
+    fonts], fonts))
+
+def parseSignCode(code):
+    for sub in subs:
+        code = code.replace(sub, subs[sub])
+    for font_code in font_codes:
+        code = code.replace(font_code, font_codes[font_code])
+    code = code.replace("} {", "}{")
+    return code
+
+def build_url(text):
+    return baseurl + urllib.quote(parseSignCode(text))
+
+if __name__ == "__main__":
+    try:
+        text = sys.argv[1]
+        if '-f' in sys.argv[1:]:
+            if text[0:3] == 'web':
+                print "is web"
+                elements, template = text.split('\\')[2:-2], text.split('\\')[-1]
+                print 'elements:', elements
+                results = []
+                while len(elements) > 0:
+                    element = elements.pop()
+                    page, selectors = (element.split('<<')[0],
+                            element.split('<<')[1:])
+                    print 'page: %s' % page
+                    resp = Soup(requests.get(page).content)
+                    for selector in selectors:
+                        print 'selector: %s' % selector
+                        results.append(str(resp.findSelect(selector)[0].text))
+                text = template % tuple(results)
+    except Exception, e:
+        print "Please input a message argument surrounded by quotes. Exception: %s" % e 
+
+    if "--help" in text:
+        help_text = """NAME:
+    netyell - send formatted messages to symon netbrite signs
+SYNOPSIS:
+    netyell "web\\[{URL}<<{CSS-SELECTOR}[<<CSS-SELECTOR]*]+\\{PYTHON-FORMAT-STRING}"
+    [-b -d -e -f -l -r -s -v]
+    netyell "{NETBRITE-SHORT-CODE-STRING}" [-b -d -e -f -l -r -s -v]
+    netyell --help
+    netyell --fonts
+FLAGS:
+    --fonts\tReturns a list of all available fonts and their short codes.
+    -b\tPrepends a blink tag to the message.
+    -d\tRuns netyell in debug mode, no http request will be sent.
+    -e\tAppends an erase tag to the message.
+    -f\tParses the first argument as a url-selector string instead of the 
+        default (netbrite-shortcode string).
+    -l[secs]\tLoops the message, sending a recurring request every 5 seconds.
+    Or at whatever interval you specify.
+    -r\tPuts text in rainbow mode. WARNING: This greatly increases the size
+        of the message which may cause the server to ignore it even though it
+        sends back a 200 status code.
+    -s\tSurrounds your message in wingbat symbols.
+    -v\tReturns verbose request output.
+EXAMPLES:
+   1) Blinking text in rainbow mode.
+   
+   $ netyell "What is the speed air-speed velocity of an unladen swallow?" -b -r
+   
+   2) The serial of the sign in monospace 11, red, with surrounding wingbats. 
+   
+   $ netyell '&&f -> &&mo11:: !!r ^^s' -s
+   
+   3) The current weather and forecast for Seattle, WA.
+   
+   $ netyell 'web\\http://www.weather.com/weather/right-now/47.606209,-122.332071?cm
+   _ven=Googlemaps&cm_cat=googleOneBox&cm_pla=application-us&cm_ite=today<<[itempr
+   op=temperature-fahrenheit]<<[itemprop=weather-phrase]<<[itemprop=observation-qu
+   alifier-phrase]\\&&f -> &&mo7:: Temp: %sF Weather: %s Forecast: %s' -f
+    
+    4) Get the titlei, points, and comment count of the top hackernews article every
+    2 hours.
+    
+    $ netyell 'web\\http://news.ycombinator.com/best<<td.title
+    a<<[id^=score]<<[href^=item?]\\!!rHN Top Article:!!y %s &&f ->
+    &&mo7:: %s %s' -l7200 -f &
+                
+NETBRITE SHORT CODES:
+    Netyell does not require you to use the full length netbrite tags. You can
+    use these shortcuts:"""
+        print help_text
+        for sub in subs:
+            print "\t" + sub + ": "  + subs[sub]
+        sys.exit()
+
+    if "--fonts" in text:
+        for font in font_codes:
+            print "\t" +  font + ": " + font_codes[font]
+        sys.exit()
+
+    try:
+        debug = "-d" in sys.argv[1:]
+    except:
+        debug = False
+
+
+    if '-s' in sys.argv[1:]:
+        symbols = ' &&f -> &&pi16:: ' + ''.join('%s' % i for i in
+                xrange(random.randint(3, 5)))
+        text = symbols + ' &&f -> &&mo16:: '+ text + " " + symbols
+
+    text = ('::bon' if '-b' in sys.argv[1:] else '') + ' '.join(
+        [
+        ''.join([
+            (\
+                (\
+                    ['!!r', '!!g', '!!y'][random.randint(0,2)] if '-r' in \
+                    sys.argv[1:] else ''\
+                ) +  c\
+            ) if c is not ' ' else ' '\
+            for c in word
+        ])\
+            if (word[:2] not in ['::', '->', '&&','^^'])\
+        else word\
+        for word in text.split(' ')\
+        ])
+    if debug:
+        print type(text)
+    text =  text + ('::e ' if '-e' in sys.argv[1:] else '') 
+    if debug:
+        print 'first tranform: %s' % text
+    url = build_url(text)
+
+    if not debug:
+        i = 0
+        time = 4
+        loop = False
+        for arg in sys.argv:
+            if '-l' == arg[:2]:
+                print 'looping'
+                loop = True
+                time = int(arg[2:])
+        while loop  or i < 1:
+            if i > 0:
+               sleep(time) 
+            i += 1
+            r = requests.get(url)
+            if r.status_code == 200:
+                print "success: the message was sent"
+            else:
+                print "error: the server returned status %s" % r.status_code
+            if '-v' in sys.argv[1:]:
+                print 'code: %s \ncontent: %s' % (r.status_code, r.content)
+    else:
+        print parseSignCode(text)
+        print url
