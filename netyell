@@ -86,7 +86,7 @@ if __name__ == "__main__":
         help_text = """NAME:
     netyell - send formatted messages to symon netbrite signs
 SYNOPSIS:
-    netyell "web\\[{URL}<<{CSS-SELECTOR}[<<CSS-SELECTOR]*]+\\{PYTHON-FORMAT-STRING}"
+    netyell "web\\[{URL}<<{CSS-SELECTOR}[<<{CSS-SELECTOR}]*]+\\{PYTHON-FORMAT-STRING}"
     [-b -d -e -f -l -r -s -v]
     netyell "{NETBRITE-SHORT-CODE-STRING}" [-b -d -e -f -l -r -s -v]
     netyell --help
