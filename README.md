@@ -50,7 +50,7 @@ This requires that you have `pip` and `wget` installed on your system.
 	
 	$ netyell 'web\http://news.ycombinator.com/best<<td.title
 	a<<[id^=score]<<[href^=item?]\!!rHN Top Article:!!y %s &&f ->
-	&&mo7:: %s %s' -l7200 -f &
+	&&mo7:: %s %s' -l7200 -f >& /dev/null &
 ###NETBRITE SHORT CODES:
 Netyell does not require you to use the full length netbrite tags. You can
 use these shortcuts:
