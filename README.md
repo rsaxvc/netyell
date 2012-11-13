@@ -73,7 +73,7 @@ use these shortcuts:
 		::e: {erase}
 		:: : }
 ###AVAILABLE FONTS
-The fonts available on the sing and their short codes are listed below:
+The fonts available on the sign and their short codes are listed below:
 
         &&mo24: monospace_24
         &&sc16: script_16
