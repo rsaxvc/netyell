@@ -181,7 +181,7 @@ NETBRITE SHORT CODES:
         loop = False
         for arg in sys.argv:
             if '-l' == arg[:2]:
-                if debgu: print 'looping'
+                if debug: print 'looping'
                 loop = True
                 time = int(arg[2:])
         while loop  or i < 1:
