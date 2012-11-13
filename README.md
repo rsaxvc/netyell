@@ -52,8 +52,8 @@ This requires that you have `pip` and `wget` installed on your system.
 	a<<[id^=score]<<[href^=item?]\!!rHN Top Article:!!y %s &&f ->
 	&&mo7:: %s %s' -l7200 -f &
 ###NETBRITE SHORT CODES:
-    Netyell does not require you to use the full length netbrite tags. You can
-    use these shortcuts:
+Netyell does not require you to use the full length netbrite tags. You can
+use these shortcuts:
      
 		!!g: {green}
 		::sof: {scrolloff}
@@ -73,7 +73,7 @@ This requires that you have `pip` and `wget` installed on your system.
 		::e: {erase}
 		:: : }
 ###AVAILABLE FONTS
-    The fonts available on the sing and their short codes are listed below:
+The fonts available on the sing and their short codes are listed below:
 
         &&mo24: monospace_24
         &&sc16: script_16
