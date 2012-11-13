@@ -15,6 +15,7 @@ This requires that you have `pip` and `wget` installed on your system.
     netyell --help
     netyell --fonts
 ###FLAGS:
+    --help     Returns this page.
     --fonts		Returns a list of all available fonts and their short codes.
     -b		Prepends a blink tag to the message.
     -d		Runs netyell in debug mode, no http request will be sent.
@@ -33,7 +34,7 @@ This requires that you have `pip` and `wget` installed on your system.
 	
 	$ netyell "What is the speed air-speed velocity of an unladen swallow?" -b -r
 	
-	2) The serial of the sign in monospace 11, red, with surrounding wingbats. 
+	2) The serial of the sign in monospace 11px, red, with surrounding wingbats. 
 	
 	$ netyell '&&f -> &&mo11:: !!r ^^s' -s
 	
@@ -44,7 +45,7 @@ This requires that you have `pip` and `wget` installed on your system.
 	op=temperature-fahrenheit]<<[itemprop=weather-phrase]<<[itemprop=observation-qu
 	alifier-phrase]\&&f -> &&mo7:: Temp: %sF Weather: %s Forecast: %s' -f
 	
-	4) Get the titlei, points, and comment count of the top hackernews article every
+	4) Get the title, points, and comment count of the top hackernews article every
 	2 hours.
 	
 	$ netyell 'web\http://news.ycombinator.com/best<<td.title
@@ -72,3 +73,18 @@ This requires that you have `pip` and `wget` installed on your system.
 		!!y: {yellow}
 		::e: {erase}
 		:: : }
+###AVAILABLE FONTS
+    The fonts available on the sing and their short codes are listed below:
+        &&mo24: monospace_24
+        &&sc16: script_16
+        &&pr24: proportional_24
+        &&mo7: monospace_7
+        &&pi16: picture_16
+        &&pr16: proportional_16
+        &&bo7: bold_proportional_7
+        &&pr11: proportional_11
+        &&pr7: proportional_7
+        &&pr5: proportional_5
+        &&bo11: bold_proportional_11
+        &&pr9: proportional_9
+        &&mo16: monospace_16
