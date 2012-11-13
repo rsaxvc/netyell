@@ -30,6 +30,8 @@ This requires that you have `pip` and `wget` installed on your system.
     -s		Surrounds your message in wingbat symbols.
     -v		Returns verbose request output.
 ###EXAMPLES:
+*WARNING: Don't copy and paste examples from the manual or `-help`, they have hard
+line breaks which will give you problems!!*
 	1) Blinking text in rainbow mode.
 	
 	$ netyell "What is the speed air-speed velocity of an unladen swallow?" -b -r
