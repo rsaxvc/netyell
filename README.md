@@ -33,7 +33,7 @@ fine.
     -s		Surrounds your message in wingbat symbols.
     -v		Returns verbose request output.
 ###EXAMPLES:
-*WARNING:* Don't copy and paste examples from the manual or `-help`, they have hard
+*WARNING:* Don't copy and paste examples from the manual or `--help`, they have hard
 line breaks which will give you problems!!
 
 	1) Blinking text in rainbow mode.
