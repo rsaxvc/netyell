@@ -5,7 +5,7 @@
 	
 Clone this repository or download it's contents. Run:
 
-	chmod +x install.sh && install.sh
+	chmod +x install.sh && ./install.sh
 
 This requires that you have `pip` and `wget` installed on your system.
 ###SYNOPSIS:
