@@ -62,6 +62,7 @@ def build_url(text):
 
 if __name__ == "__main__":
     try:
+        debug = "-d" in sys.argv[1:]
         text = sys.argv[1]
         if '-f' in sys.argv[1:]:
             if text[0:3] == 'web':
