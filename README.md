@@ -9,7 +9,7 @@ Clone this repository or download it's contents. Run:
 
 This requires that you have `pip` and `wget` installed on your system.
 ###SYNOPSIS:
-    netyell "web\[{URL}<<{CSS-SELECTOR}[<<CSS-SELECTOR]*]+\{PYTHON-FORMAT-STRING}"
+    netyell "web\\[{URL}<<{CSS-SELECTOR}[<<CSS-SELECTOR]*]+\\{PYTHON-FORMAT-STRING}"
     [-b -d -e -f -l -r -s -v]
     netyell "{NETBRITE-SHORT-CODE-STRING}" [-b -d -e -f -l -r -s -v]
     netyell --help
@@ -40,17 +40,17 @@ This requires that you have `pip` and `wget` installed on your system.
 	
 	3) The current weather and forecast for Seattle, WA.
 	
-	$ netyell 'web\http://www.weather.com/weather/right-now/47.606209,-122.332071?cm
+	$ netyell 'web\\http://www.weather.com/weather/right-now/47.606209,-122.332071?cm
 	_ven=Googlemaps&cm_cat=googleOneBox&cm_pla=application-us&cm_ite=today<<[itempr
 	op=temperature-fahrenheit]<<[itemprop=weather-phrase]<<[itemprop=observation-qu
-	alifier-phrase]\&&f -> &&mo7:: Temp: %sF Weather: %s Forecast: %s' -f
+	alifier-phrase]\\&&f -> &&mo7:: Temp: %sF Weather: %s Forecast: %s' -f
 	
 	4) Get the title, points, and comment count of the top hackernews article every
 	2 hours.
 	
-	$ netyell 'web\http://news.ycombinator.com/best<<td.title
-	a<<[id^=score]<<[href^=item?]\!!rHN Top Article:!!y %s &&f ->
-	&&mo7:: %s %s' -l7200 -f >& /dev/null &
+	$ netyell 'web\\http://news.ycombinator.com/best<<td.title
+	a<<[id^=score]<<[href^=item?]\\!!rHN Top Article:!!y %s &&f ->
+	&&mo7:: %s %s' -l7200 -f &
 ###NETBRITE SHORT CODES:
 Netyell does not require you to use the full length netbrite tags. You can
 use these shortcuts:
