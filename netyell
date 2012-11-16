@@ -187,7 +187,7 @@ NETBRITE SHORT CODES:
             if '-l' == arg[:2]:
                 if debug: print 'looping'
                 loop = True
-                time = int(arg[2:])
+                time = int(arg[2:]) if len(arg) > 2 else time
         while loop  or i < 1:
             if i > 0:
                sleep(time) 
