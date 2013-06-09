@@ -1,3 +1,4 @@
 BeautifulSoup
 soupselect
 requests
+pip
